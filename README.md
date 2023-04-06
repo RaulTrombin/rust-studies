@@ -24,6 +24,12 @@
             └── lib.rs
 ```
 
+The idea of this repo is to agregate the concepts and tools to develop a multiplataform drivers writen in rust.
+
+For a starting proof of concept, we have a rust lib "rust_txt_core" that edit and read a txt file.
+
+Then this crate is imported to the following binding projects, for C and Python.
+
 https://dev.to/apollolabsbin/rust-ffi-and-cbindgen-integrating-embedded-rust-code-in-c-59f8
 https://michael-f-bryan.github.io/rust-ffi-guide/overview.html
 https://developers.redhat.com/articles/2022/09/01/3-essentials-writing-linux-system-library-rust
