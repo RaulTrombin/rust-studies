@@ -11,3 +11,4 @@ crate-type = ["cdylib"]
 [dependencies]
 pyo3 = "0.18.1"
 chrono = "0.4.24"
+rust_txt_core = { path = "../rust_txt_core" }

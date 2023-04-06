@@ -195,6 +195,7 @@ version = "0.1.0"
 dependencies = [
  "chrono",
  "pyo3",
+ "rust_txt_core",
 ]
 
 [[package]]
@@ -340,6 +341,10 @@ checksum = "fb5a58c1855b4b6819d59012155603f0b22ad30cad752600aadfcb695265519a"
 dependencies = [
  "bitflags",
 ]
+
+[[package]]
+name = "rust_txt_core"
+version = "0.1.0"
 
 [[package]]
 name = "scopeguard"

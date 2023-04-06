@@ -1,34 +1,27 @@
 use pyo3::prelude::*;
-use std::fs::{OpenOptions, File};
-use std::io::{Error, Write, Read, BufReader};
-use chrono::prelude::*;
+use rust_txt_core::{append_to_file as append_to_file_core, read_from_file as read_from_file_core};
 
 
 #[pyfunction]
-fn append(file_name: &str, content: &str) -> PyResult<()> {
-    let mut file = OpenOptions::new()
-        .read(true)
-        .write(true)
-        .create(true)
-        .append(true)
-        .open(file_name)?;
-    file.write_all(content.as_bytes())?;
-    file.write_all("\n".as_bytes())?;
-    Ok(())
+fn append_to_file(file_name: &str, content: &str) -> PyResult<()> {
+    match append_to_file_core(&file_name, &content){
+        Ok(()) => Ok(()),
+        Err(_) => todo!()
+        // Err() => PyErr()
+    }
 }
 
 #[pyfunction]
-fn read(file_name: &str) -> PyResult<String> {
-    let file = File::open(file_name)?;
-    let mut reader = BufReader::new(file);
-    let mut contents = String::new();
-    reader.read_to_string(&mut contents)?;
-    Ok(contents)
+fn read_from_file(file_name: &str) -> PyResult<String> {
+    match read_from_file_core(&file_name){
+        Ok(contents) => Ok(contents),
+        Err(_) => todo!()
+    }
 }
 
 #[pymodule]
 fn log_file(_py: Python, m: &PyModule) -> PyResult<()> {
-    m.add_function(wrap_pyfunction!(append, m)?)?;
-    m.add_function(wrap_pyfunction!(read, m)?)?;
+    m.add_function(wrap_pyfunction!(append_to_file, m)?)?;
+    m.add_function(wrap_pyfunction!(read_from_file, m)?)?;
     Ok(())
 }
