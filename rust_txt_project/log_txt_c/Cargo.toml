@@ -9,6 +9,7 @@ name = "log_txt_c"
 crate-type = ["cdylib"]
 
 [dependencies]
+rust_txt_core = { path = "../rust_txt_core" }
 
 [build-dependencies]
 cbindgen = "0.24.0"

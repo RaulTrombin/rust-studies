@@ -1,7 +1,10 @@
 use std::ffi::{CStr, CString};
 use std::os::raw::c_char;
-use std::fs::{OpenOptions, File};
-use std::io::{Error, Write, Read, BufReader};
+// use std::fs::{OpenOptions, File};
+// use std::io::{Error, Write, Read, BufReader};
+
+use rust_txt_core::{append_to_file as append_to_file_inner, read_from_file as read_from_file_inner};
+
 
 #[no_mangle]
 pub extern "C" fn append_to_file(file_name: *const c_char, content: *const c_char) -> i32 {
@@ -13,20 +16,6 @@ pub extern "C" fn append_to_file(file_name: *const c_char, content: *const c_cha
     }
 }
 
-fn append_to_file_inner(file_name: &str, content: &str) -> Result<(), Error> {
-    let mut file = OpenOptions::new()
-        .read(true)
-        .write(true)
-        .create(true)
-        .append(true)
-        .open(file_name)?;
-
-    file.write_all(content.as_bytes())?;
-    file.write_all("\n".as_bytes())?;
-
-    Ok(())
-}
-
 #[no_mangle]
 pub extern "C" fn read_from_file(file_name: *const c_char) -> *mut c_char {
     let file_name = unsafe { CStr::from_ptr(file_name).to_string_lossy().into_owned() };
@@ -36,10 +25,3 @@ pub extern "C" fn read_from_file(file_name: *const c_char) -> *mut c_char {
     }
 }
 
-fn read_from_file_inner(file_name: &str) -> Result<String, Error> {
-    let file = File::open(file_name)?;
-    let mut reader = BufReader::new(file);
-    let mut contents = String::new();
-    reader.read_to_string(&mut contents)?;
-    Ok(contents)
-}

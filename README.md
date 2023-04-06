@@ -25,7 +25,11 @@ https://michael-f-bryan.github.io/rust-ffi-guide/overview.html
 https://developers.redhat.com/articles/2022/09/01/3-essentials-writing-linux-system-library-rust
 https://github.com/cathay4t/librabc
 
+Binds
+C:
 https://github.com/eqrion/cbindgen/
+Python:
+https://github.com/PyO3/pyo3
 wasm
 
 What is FFI
