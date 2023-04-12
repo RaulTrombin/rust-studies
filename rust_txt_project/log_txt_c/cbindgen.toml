@@ -6,7 +6,7 @@
 
 
 
-language = "C++"
+language = "C"
 
 
 
@@ -23,7 +23,7 @@ namespaces = []
 using_namespaces = []
 sys_includes = []
 includes = []
-no_includes = false
+no_includes = true
 after_includes = ""
 
 
